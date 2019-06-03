@@ -1,0 +1,27 @@
+---
+title: "finalproject"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(deSolve)
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+source("deforestationrate.R")
+forest_area <- data.frame(Ccurr=seq(from=1, to=1000, by=50))
+forestsize = data.frame(Ccurr=seq(from=1, to=100, by=5))
+
+brasil <- list(A1=300000, A2=150000)
+deforestation$derivative_high = unlist(sapply(forestsize$Ccurr, deforestationrate, area=brasil, time=NULL))
+
+california <- list(A1=300000, A2=284096)
+deforestation$derivative_high = unlist(sapply(forestsize$Ccurr, deforestationrate, area=california, time=NULL))
+
+
+```
+
